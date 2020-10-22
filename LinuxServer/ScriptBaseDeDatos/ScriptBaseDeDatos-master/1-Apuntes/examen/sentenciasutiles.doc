@@ -1,0 +1,121 @@
+--------------------------------------------------------------------------
+TABLESPACE POR DEFECTO:
+--------------------------------------------------------------------------
+select tablespace_name, description from dba_tablespaces;
+
+--------------------------------------------------------------------------
+CREAR TABLESPACE
+--------------------------------------------------------------------------
+CREATE TABLESPACE nombre DATAFILE ’/camino/al/fichero.dbf’
+SIZE tamanoinicial
+AUTOEXTEND ON
+NEXT200k
+MAXSIZE 1400K;
+
+--------------------------------------------------------------------------
+CREAR USUARIO
+--------------------------------------------------------------------------
+CREATE USER usuario IDENTIFIED BY contrasena 
+DEFAULT TABLESPACE tablespace
+TEMPORARY TABLESPACE tablespace
+QUOTA UNLIMITED ON tablespace
+ACCOUNT UNLOCK;
+
+
+--------------------------------------------------------------------------
+CREACION DE UN ROLE
+--------------------------------------------------------------------------
+create role NOMBREROL;
+grant PRIVILEGIOS on OBJETOS to NOMBREROL;
+grant NOMBREROL to USUARIO;
+
+
+--------------------------------------------------------------------------
+CREACION DE PERFILES
+--------------------------------------------------------------------------
+CREATE PROFILE nombreperfil 
+LIMIT SESSIONS_PER_USER          UNLIMITED
+CPU_PER_SESSION            UNLIMITED
+CPU_PER_CALL               3000
+CONNECT_TIME               45
+IDLE_TIME                 300
+LOGICAL_READS_PER_SESSION DEFAULT
+LOGICAL_READS_PER_CALL     1000
+PRIVATE_SGA                15K
+COMPOSITE_LIMIT            5000000;
+ALTERSYSTEMSETresource_limit =TRUEscope =BOTH
+
+
+--------------------------------------------------------------------------
+ASIGNAR UN PERFIL A UN USUARIO
+--------------------------------------------------------------------------
+alteruser USUARIO profile NOMBREDEPERFIL;
+
+--------------------------------------------------------------------------
+BLOQUEOS MANUALES - LOCK TABLE Y SELECT .... FOR UPDATE
+--------------------------------------------------------------------------
+LOCK TABLE tabla IN EXCLUSIVE MODE NOWAIT;
+
+
+--------------------------------------------------------------------------
+USUARIOS CONECTADOS 1
+--------------------------------------------------------------------------
+select username,osuser,terminal 
+from sys.v_$session
+where username is not null
+order by username,osuser;
+
+--------------------------------------------------------------------------
+USUARIOS CONECTADOS 2
+--------------------------------------------------------------------------
+SELECT s.username, s.program, s.logon_time
+FROM sys.v_$session s, sys.v_$process p, sys.v_$sess_io si
+WHERE s.paddr = p.addr(+) AND si.sid(+) = s.sid AND s.type = ’USER’;
+
+
+--------------------------------------------------------------------------
+BLOQUEOS DE LA BASE DE DATOS
+--------------------------------------------------------------------------
+select session_id "sid",SERIAL#  "Serial",substr(object_name,1,20) "Object",
+substr(os_user_name,1,10) "Terminal",substr(oracle_username,1,10) "Locker",
+nvl(lockwait,’active’) "Wait",decode(locked_mode,2, ’row share’,3,
+’row exclusive’,4, ’share’,5, ’share row exclusive’,6, ’exclusive’, 
+’unknown’) "Lockmode",OBJECT_TYPE "Type"
+FROM SYS.V_$LOCKED_OBJECT A,SYS.ALL_OBJECTS B,SYS.V_$SESSION c 
+WHERE A.OBJECT_ID = B.OBJECT_ID AND C.SID = A.SESSION_ID
+ORDER BY 1 ASC, 5 Desc;
+
+
+--------------------------------------------------------------------------
+DESCRIPTCION DE USUARIOS BLOQUEADOS Y BLOQUEANTES
+--------------------------------------------------------------------------
+select s1.username || ’@’ || s1.machine|| ’ ( SID=’ || s1.sid || ’ ) 
+is blocking ’|| s2.username || ’@’ || s2.machine || ’ ( SID=’ || s2.sid || ’ )
+’ASblocking_status
+from v_$lock l1, v_$session s1, v_$lock l2,v_$session s2
+where s1.sid=l1.sid and s2.sid=l2.sid and l1.BLOCK=1 and l2.request > 0 and l1.id1 = l2.id1 and l2.id2 = l2.id2;
+
+
+
+--------------------------------------------------------------------------
+SENTENCIA SQL BLOQUEADA
+--------------------------------------------------------------------------
+select s.sid, q.sql_text
+from v_$sqltext q, v_$session s
+where q.address = s.sql_address and s.sid =*ELSIDBLOQUEADO*
+order by piece;
+
+
+
+--------------------------------------------------------------------------
+TERMINAR UNA SESION
+--------------------------------------------------------------------------
+SELECT s.inst_id,s.sid,s.serial#,p.spid,s.username,s.program
+FROM gv_$session s
+JOIN gv_$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id 
+WHERE s.type != ’BACKGROUND’;
+
+ALTERSYSTEM KILLSESSION’sid,serial#’;
+
+
+

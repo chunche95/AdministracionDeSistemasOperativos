@@ -1,0 +1,10 @@
+
+SISTEMA                                 ,AVG(TAMANO),AVG(USADO),MONTADO
+/dev/sda1                               ,    1038336,    172928,/boot
+tmpfs                                   ,    1940576,         0,/sys/fs/cgroup
+devtmpfs                                ,    1923604,         0,/dev
+tmpfs                                   ,     388116,         0,/run/user/1000
+tmpfs                                   ,    1940576,    917504,/dev/shm
+tmpfs                                   ,    1940576,      9136,/run
+
+

@@ -1,0 +1,15 @@
+SQL> begin
+  2  for i in 1 .. 10
+  3  loop
+  4  insert into person.pruebas values(i, 'Nuevo dato fantasma');
+  5  end loop;
+  6  end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

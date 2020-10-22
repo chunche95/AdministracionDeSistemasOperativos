@@ -1,0 +1,59 @@
+18:07:25 SQL> 
+18:07:25 SQL> -- Usuario person & permisos
+18:07:25 SQL> drop user person cascade;
+
+User dropped.
+
+18:07:26 SQL> create user person identified by person;
+
+User created.
+
+18:07:26 SQL> grant connect, resource to person;
+
+Grant succeeded.
+
+18:07:26 SQL> alter user person default tablespace USERS quota unlimited on USERS;
+
+User altered.
+
+18:07:26 SQL> grant create synonym to person;
+
+Grant succeeded.
+
+18:07:26 SQL> 
+18:07:26 SQL> -- Creación de la tabla PRUEBAS
+18:07:26 SQL> host sh TablePerson.sh
+
+18:07:26 SQL> 
+18:07:26 SQL> -- Creacion del sinónimo de PRUEBAS
+18:07:26 SQL> create or replace public synonym pruebas for person.pruebas;
+
+Synonym created.
+
+18:07:26 SQL> 
+18:07:26 SQL> -- Usuario ghost & permisos
+18:07:26 SQL> drop user ghost cascade;
+
+User dropped.
+
+18:07:26 SQL> create user ghost identified by ghost;
+
+User created.
+
+18:07:26 SQL> grant connect, resource to ghost;
+
+Grant succeeded.
+
+18:07:26 SQL> grant insert, delete, update on person.pruebas to ghost;
+
+Grant succeeded.
+
+18:07:26 SQL> 
+18:07:26 SQL> -- Insert de datos en la tabla pruebas.
+18:07:26 SQL> host sh DataGhost.sh
+
+18:07:26 SQL> 
+18:07:26 SQL> -- Lectura de los nuevos datos
+18:07:26 SQL> host sh ReadNewData.sh
+
+18:07:31 SQL> spool off

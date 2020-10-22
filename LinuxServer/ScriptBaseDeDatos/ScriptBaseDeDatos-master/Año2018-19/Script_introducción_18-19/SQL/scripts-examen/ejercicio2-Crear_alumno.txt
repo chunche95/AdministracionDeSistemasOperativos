@@ -1,0 +1,20 @@
+create sequence secuencia_alumno_id;
+create or replace procedure CREAR_ALUMNO (
+    nombre_p varchar,
+    dni_p varchar,
+    idalumno_p out numeric)
+as
+    nuevoid numeric;
+    existencia_dni number;
+begin
+    nuevoid:=SECUENCIA_ALUMNO_ID.NEXTVAL;
+    select count(dni) into existencia_dni from ALUMNOS where dni_p=dni;
+    if (existencia_dni>0) then
+        RAISE_APPLICATION_ERROR(-20001,'DNIYAEXISTE');
+    end if;
+    insert into alumnos (NOMBRE, DNI, idalumno)
+    values (nombre_p, dni_p, nuevoid);
+    idalumno_p:=nuevoid;    
+end;
+
+    

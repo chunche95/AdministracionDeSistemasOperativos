@@ -1,0 +1,61 @@
+-----------Maquina virtual Sobremesa----------
+----------------Centos------------------------
+mkdir pruebasexpdpimpdpsobremesa -> tablespace
+mkdir expdpimpdpsobremesa -> "copias de seguridad"
+----------------------------------------------
+----------------sql Developer-----------------
+drop user alumnosobremesa cascade;
+
+create tablespace pruebasexpdpimpdpsobremesa
+datafile '/home/alumno/datos/sobremesaexpdpimpdp/sobremesaexpdpimpdp.dbf' size 100M;
+
+create user alumnosobremesa identified by alumnosobremesa
+default tablespace pruebasexpdpimpdpsobremesa
+quota unlimited on pruebasexpdpimpdpsobremesa;
+grant connect, resource to alumnosobremesa;
+
+grant create any directory to alumnosobremesa;
+create directory backupssobremesa as '/home/alumno/datos/expdpimpdpbackups';
+grant read, write on directory backupssobremesa to alumnosobremesa;
+
+grant exp_full_database to alumnosobremesa;
+
+select * from alumnosobremesa.escuderias;
+----------------------------------------------
+Exportar
+expdp alumnosobremesa/alumnosobremesa directory=backupssobremesa schemas=sobremesa dumpfile=alumnosobremesa.dmp logfile=alumnosobremesa.log
+----------------------------------------------
+----------------------------------------------
+Copiar ficheros copia de seguridad a otro equipo
+scp /home/alumno/expdpimpdpsobremesa/alumnosobremesa.* alumno@192.168.1.94:/home/alumno/datos/portatilexpdpimpdpbackups
+----------------------------------------------
+----------------------------------------------
+
+-----------Maquina virtual Portatil----------
+----------------Centos------------------------
+mkdir pruebasexpdpimpdpportatil -> tablespace
+mkdir expdpimpdpportatil -> "copias de seguridad"
+----------------------------------------------
+----------------sql Developer-----------------
+drop user alumnoportatil cascade;
+
+create tablespace pruebasexpdpimpdpportatil
+datafile '/home/alumno/datos/portatilexpdpimpdp/portatilexpdpimpdp.dbf' size 100M;
+
+create user alumnoportatil identified by alumnoportatil
+default tablespace pruebasexpdpimpdpportatil
+quota unlimited on pruebasexpdpimpdpportatil;
+grant connect, resource to alumnoportatil;
+
+grant create any directory to alumnoportatil;
+create directory backupsportatil as '/home/alumno/datos/portatilexpdpimpdpbackups';
+grant read, write on directory backupsportatil to alumnoportatil;
+
+grant imp_full_database to alumnoportatil;
+----------------------------------------------
+----------------------------------------------
+Importar
+impdp alumnoportatil/alumnoportatil schemas=alumnosobremesa remap_schema=alumnosobremesa:alumnoportatil 
+remap_tablespace=pruebasexpdpimpdpsobremesa:pruebasexpdpimpdpportatil directory=backupsportatil dumpfile=alumnosobremesa.dmp logfile=alumnosobremesa.log
+----------------------------------------------
+----------------------------------------------

@@ -1,0 +1,804 @@
+[3;J[H[2J
+SQL*Plus: Release 18.0.0.0.0 - Production on Thu Dec 12 07:32:21 2019
+Version 18.3.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+
+SQL> SQL> Tablespace de pauchino --> exportacion
+
+SQL> drop tablespace exportacion
+*
+ERROR at line 1:
+ORA-01549: tablespace not empty, use INCLUDING CONTENTS option
+
+
+SQL> SQL>   2    3  create tablespace exportacion
+*
+ERROR at line 1:
+ORA-01543: tablespace 'EXPORTACION' already exists
+
+
+SQL> SQL>  Usuario pruebas
+
+SQL> drop user pruebas cascade
+*
+ERROR at line 1:
+ORA-01940: cannot drop a user that is currently connected
+
+
+SQL>   2    3  create user pruebas identified by pruebas
+            *
+ERROR at line 1:
+ORA-01920: user name 'PRUEBAS' conflicts with another user or role name
+
+
+SQL> SQL> 
+User dropped.
+
+SQL>   2    3  
+User created.
+
+SQL> SQL> Permisos
+
+SQL> 
+Grant succeeded.
+
+SQL> 
+Grant succeeded.
+
+SQL> SQL> 
+Grant succeeded.
+
+SQL> 
+Grant succeeded.
+
+SQL> SQL> SQL> Creando directorio de EXPORTACIONES para PAUCHINO
+
+SQL> create directory EXPORTACIONES as '/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino'
+                 *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> 
+Grant succeeded.
+
+SQL> 
+Grant succeeded.
+
+SQL> Disconnected from Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+
+SQL*Plus: Release 18.0.0.0.0 - Production on Thu Dec 12 07:32:21 2019
+Version 18.3.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+Last Successful login time: Thu Dec 12 2019 07:29:46 -05:00
+
+Connected to:
+Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+insert into escuderias values (1,'RENOL')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into escuderias values (2,'FERRALLA')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into escuderias values (3,'MCDONAL')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (1,'JOHN',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (2,'NESTOR',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (3,'PAUL',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (4,'MICHAEL',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (5,'EUSTAQUIO',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (6,'ROGER',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (7,'SIGFREDO',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into pilotos values (8,'TOM',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (1,'R1',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (2,'F1',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (3,'M1',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (4,'R2',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (5,'F2',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (6,'M2',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into prototipos values (7,'R3',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (1,'01/03/2006',1)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (2,'15/03/2006',2)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (3,'01/04/2006',3)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (4,'13/05/2006',4)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (5,'01/05/2006',1)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into carreras values (6,'12/05/2006',2)
+                               *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into circuitos values (1,'JARABE')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into circuitos values (2,'PEONZA')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into circuitos values (3,'CERRADO')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into circuitos values (4,'MONACCO')
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,1,1,'1:23:12345',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,1,2,'1:25:12542',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (3,1,3,'1:26:54322',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (4,1,4,'1:29:58540',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (5,2,5,'2:30:19876',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (6,2,6,'2:40:17654',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (7,2,7,'2:54:28987',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,2,1,'3:01:29876',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,2,2,'3:02:30987',5)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,3,1,'2:10:34890',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,3,2,'2:24:47897',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (3,3,3,'2:25:26754',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (4,3,4,'2:26:18765',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (5,3,5,'2:28:41234',5)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (6,3,6,'2:29:51234',6)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,4,1,'0:23:41234',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,4,2,'0:25:31254',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (3,4,3,'0:26:25432',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (4,4,4,'0:29:49854',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (5,5,5,'1:30:29876',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (6,5,6,'1:40:47654',5)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (7,5,7,'1:54:38987',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,5,1,'2:01:19876',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,5,2,'2:02:40987',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (1,6,1,'1:10:54890',6)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (2,6,2,'1:24:37897',5)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (3,6,3,'1:25:26754',3)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (4,6,4,'1:26:18765',4)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (5,6,5,'1:28:41234',2)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+insert into resultados values (6,6,6,'1:29:51234',1)
+            *
+ERROR at line 1:
+ORA-01116: error in opening database file 10
+ORA-01110: data file 10:
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/pau.dbf'
+ORA-27041: unable to open file
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+SQL> 
+SQL> Disconnected from Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+Tablas cargadas
+Fin de exportacion
+Archivo copiado
+Fin del SCRIPT

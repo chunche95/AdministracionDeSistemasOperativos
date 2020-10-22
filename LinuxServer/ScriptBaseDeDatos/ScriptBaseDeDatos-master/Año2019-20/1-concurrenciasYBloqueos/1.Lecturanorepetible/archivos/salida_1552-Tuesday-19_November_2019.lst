@@ -1,0 +1,51 @@
+15:52:38 SQL> drop user bloqueado cascade;
+
+User dropped.
+
+Elapsed: 00:00:00.17
+15:52:39 SQL> drop user bloqueante cascade;
+
+User dropped.
+
+Elapsed: 00:00:00.04
+15:52:39 SQL> create user bloqueado identified by bloqueado QUOTA unlimited on users default tablespace USERS;
+
+User created.
+
+Elapsed: 00:00:00.01
+15:52:39 SQL> grant connect, resource to bloqueado;
+
+Grant succeeded.
+
+Elapsed: 00:00:00.01
+15:52:39 SQL> grant create synonym to bloqueado;
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+15:52:39 SQL> alter user bloqueado quota unlimited on users;
+
+User altered.
+
+Elapsed: 00:00:00.02
+15:52:39 SQL> -- ------------------------------------------------------
+15:52:39 SQL> host echo 'Usuario y privilegios otorgados a BLOQUEADO'
+
+15:52:39 SQL> -- ------------------------------------------------------
+15:52:39 SQL> create user bloqueante identified by bloqueante;
+
+User created.
+
+Elapsed: 00:00:00.02
+15:52:39 SQL> grant connect, resource to bloqueante;
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+15:52:39 SQL> host echo '--------------------------------------------'
+
+15:52:39 SQL> host echo 'Usuario y privilegios otorgados a BLOQUEANTE'
+
+15:52:39 SQL> host echo '--------------------------------------------'
+
+15:52:39 SQL> exit

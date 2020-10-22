@@ -1,0 +1,177 @@
+[3;J[H[2J
+SQL*Plus: Release 18.0.0.0.0 - Production on Thu Dec 12 07:07:44 2019
+Version 18.3.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+
+SQL> SQL> Tablespace de pauchino --> exportacion
+
+SQL> 
+Tablespace dropped.
+
+SQL> SQL>   2    3  create tablespace exportacion
+*
+ERROR at line 1:
+ORA-01119: error in creating database file
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/tablespace.db
+f'
+ORA-27038: created file already exists
+Additional information: 1
+
+
+SQL> SQL>  Usuario pruebas
+
+SQL> 
+User dropped.
+
+SQL>   2    3  create user pruebas identified by pruebas
+*
+ERROR at line 1:
+ORA-00959: tablespace 'EXPORTACION' does not exist
+
+
+SQL> SQL> 
+User dropped.
+
+SQL>   2    3  
+User created.
+
+SQL> SQL> Permisos
+
+SQL> grant connect, resource to pruebas
+                           *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> grant create any directory to pruebas
+                              *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> 
+Grant succeeded.
+
+SQL> 
+Grant succeeded.
+
+SQL> SQL> SQL> Creando directorio de EXPORTACIONES para PAUCHINO
+
+SQL> create directory EXPORTACIONES as '/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino'
+                 *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> grant read,write on directory EXPORTACIONES to pruebas
+                                               *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> grant exp_full_database to pruebas
+                           *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> Disconnected from Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+[3;J[H[2J
+SQL*Plus: Release 18.0.0.0.0 - Production on Thu Dec 12 07:08:00 2019
+Version 18.3.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+
+SQL> SQL> Tablespace de pauchino --> exportacion
+
+SQL> drop tablespace exportacion
+*
+ERROR at line 1:
+ORA-00959: tablespace 'EXPORTACION' does not exist
+
+
+SQL> SQL>   2    3  create tablespace exportacion
+*
+ERROR at line 1:
+ORA-01119: error in creating database file
+'/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino/tablespace.db
+f'
+ORA-27038: created file already exists
+Additional information: 1
+
+
+SQL> SQL>  Usuario pruebas
+
+SQL> drop user pruebas cascade
+          *
+ERROR at line 1:
+ORA-01918: user 'PRUEBAS' does not exist
+
+
+SQL>   2    3  create user pruebas identified by pruebas
+*
+ERROR at line 1:
+ORA-00959: tablespace 'EXPORTACION' does not exist
+
+
+SQL> SQL> 
+User dropped.
+
+SQL>   2    3  
+User created.
+
+SQL> SQL> Permisos
+
+SQL> grant connect, resource to pruebas
+                           *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> grant create any directory to pruebas
+                              *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> 
+Grant succeeded.
+
+SQL> 
+Grant succeeded.
+
+SQL> SQL> SQL> Creando directorio de EXPORTACIONES para PAUCHINO
+
+SQL> create directory EXPORTACIONES as '/home/alumno/Documents/ScriptBaseDeDatos/BackUps/pruebas/Pauchino'
+                 *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> grant read,write on directory EXPORTACIONES to pruebas
+                                               *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> grant exp_full_database to pruebas
+                           *
+ERROR at line 1:
+ORA-01917: user or role 'PRUEBAS' does not exist
+
+
+SQL> Disconnected from Oracle Database 18c Enterprise Edition Release 18.0.0.0.0 - Production
+Version 18.3.0.0.0
+Fin del SCRIPT

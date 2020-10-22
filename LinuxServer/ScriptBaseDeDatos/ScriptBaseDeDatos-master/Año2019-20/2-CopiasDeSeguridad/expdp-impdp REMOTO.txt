@@ -1,0 +1,138 @@
+-----------Maquina virtual Sobremesa----------
+----------------Centos------------------------
+mkdir exportacionessobremesa -> tablespace
+mkdir expdpimpdpsobremesa -> "copias de seguridad"
+----------------------------------------------
+----------------sql Developer-----------------
+drop user sobremesa cascade;
+
+create tablespace expdpimpdpsobremesa
+datafile '/home/alumno/datos/exportacionessobremesa/exportacionessobremesa.dbf' size 100M;
+
+create user sobremesa identified by sobremesa
+default tablespace expdpimpdpsobremesa
+quota unlimited on expdpimpdpsobremesa;
+grant connect, resource to sobremesa;
+
+grant create any directory to sobremesa;
+create directory backupssobremesa as '/home/alumno/datos/expdpimpdpsobremesa';
+grant read, write on directory backupssobremesa to sobremesa;
+
+grant exp_full_database to sobremesa;
+grant imp_full_database to sobremesa;
+----------------------------------------------
+----------------------------------------------
+
+------------Usuario Sobremesa-----------------
+------------Carga de datos--------------------
+@C:\Users\Sergio\Documents\carreras-coches.sql
+----------------------------------------------
+
+------------Exportacion de datos--------------
+expdp usuario/contraseña@direccionipdelamaquinaalaquenosvamosaconectar/asir directory= dumpfile= logfile=
+
+expdp portatil/portatil@192.168.1.94/asir directory=backupsportatil dumpfile=portatil.dmp logfile=portatil.log
+
+expdp sobremesa/sobremesa directory=backupssobremesa schemas=sobremesa dumpfile=sobremesa.dmp logfile=sobremesa.log
+----------------------------------------------
+
+------------Importacion de datos--------------
+impdp usuario/contraseña@direccionipdelamaquinaalaquenosvamosaconectar/asir directory= dumpfile= logfile= 
+
+impdp portatil/portatil@192.168.1.94/asir directory=backupsportatil dumpfile=portatil.dmp logfile=portatil.log
+----------------------------------------------
+
+-----------Maquina virtual portatil----------
+----------------Centos------------------------
+mkdir exportacionessobremesa2 -> tablespace
+mkdir expdpimpdpsobremesa2 -> "copias de seguridad"
+----------------------------------------------
+----------------sql Developer-----------------
+drop user portatil cascade;
+
+create tablespace exportacionessobremesa2
+datafile '/home/alumno/datos/exportacionessobremesa2/exportacionessobremesa2.dbf' size 100M;
+
+create user portatil identified by portatil
+default tablespace exportacionessobremesa2
+quota unlimited on exportacionessobremesa2;
+grant connect, resource to portatil;
+
+grant create any directory to portatil;
+create directory backupsportatil as '/home/alumno/datos/expdpimpdpsobremesa2';
+grant read, write on directory backupsportatil to portatil;
+
+grant exp_full_database to portatil;
+grant imp_full_database to portatil;
+----------------------------------------------
+
+------------Usuario Sobremesa-----------------
+------------Carga de datos--------------------
+@C:\Users\Sergio\Documents\carreras-coches.sql
+----------------------------------------------
+
+------------Exportacion de datos--------------
+expdp usuario/contraseña@direccionipdelamaquinaalaquenosvamosaconectar/asir directory= dumpfile= logfile=
+
+expdp sobremesa/sobremesa@192.168.1.93/asir directory=backupssobremesa dumpfile=sobremesa.dmp logfile=sobremesa.log
+----------------------------------------------
+
+------------Importacion de datos--------------
+impdp usuario/contraseña@direccionipdelamaquinaalaquenosvamosaconectar/asir directory= dumpfile= logfile= 
+
+expdp sobremesa/sobremesa@192.168.1.93/asir directory=backupssobremesa dumpfile=sobremesa.dmp logfile=sobremesa.log
+----------------------------------------------
+
+-----Copia de seguridad en otro usuario-------
+-----------Maquina virtual 1------------
+expdp pepe/pepe@192.168.1.94/asir directory=backupspepe dumpfile=pepe.dmp logfile=pepe.log
+
+impdpd pepito/pepito@192.168.1.94/asir schemas=pepe remap_schemas=pepe:pepito 
+remap_tablespace=tablespacepepe:tablespacepepito directory=backupspepito dumpfile=pepe.dmp logfile=pepe.log
+----------------------------------------
+-----------Maquina virtual 2------------
+mkdir datos
+mkdir tablespacepepe
+mkdir compartido
+mkdir tablespacepepito
+--------------Usuario 1-----------------
+create tablespace tablespacepepe
+datafile '/home/alumno/datos/tablespacepepe/tablespacepepe.dbf' size 100M;
+
+create user pepe identified by pepe
+default tablespace tablespacepepe
+quota unlimited on tablespacepepe;
+grant connect, resource to pepe;
+
+grant create any directory to pepe;
+create directory backupspepe as '/home/alumno/datos/compartido';
+grant read, write on directory backupspepe to pepe;
+
+grant exp_full_database to pepe;
+grant imp_full_database to pepe;
+----------------------------------------
+
+---------Conexion Usuario 1-------------
+@C:\Users\Sergio\Documents\carreras-coches.sql
+----------------------------------------
+
+------------Usuario 2-------------------
+create tablespace tablespacepepito
+datafile '/home/alumno/datos/tablespacepepito/tablespacepepito.dbf' size 100M;
+
+create user pepito identified by pepito
+default tablespace tablespacepepito
+quota unlimited on tablespacepepito;
+grant connect, resource to pepito;
+
+grant create any directory to pepito;
+create directory backupspepito as '/home/alumno/datos/compartido';
+grant read, write on directory backupspepito to pepito;
+
+grant exp_full_database to pepito;
+grant imp_full_database to pepito;
+
+select * from resultados;
+----------------------------------------
+----------------------------------------
+----------------------------------------------

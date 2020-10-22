@@ -1,0 +1,125 @@
+SQL> drop table PRUEBAS;
+drop table PRUEBAS
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> create table PRUEBAS(numero integer, nombre varchar(255));
+
+Table created.
+
+SQL> begin
+  2  for i in 1 .. 3
+  3  loop
+  4  insert into PRUEBAS values(i, dbms_random.string('A',5));
+  5  end loop;
+  6  end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from pruebas;
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+         1                                                                      
+dYPZU                                                                           
+                                                                                
+         2                                                                      
+mZigR                                                                           
+                                                                                
+         3                                                                      
+uqzAr                                                                           
+                                                                                
+
+SQL> 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        TRAS LA INSERCIÓN DE LOS NUEVOS DATOS FANTASMAS      
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
++++++          ++++++++++        +++++++++++        +++++++++
+++++++        ++++++++++++      +++++++++++++      ++++++++++
+++++++++    +++++++++++++++    +++++++++++++++    +++++++++++
++++++++++  +++++++++++++++++  +++++++++++++++++  ++++++++++++
+SQL> select * from pruebas;
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+         1                                                                      
+dYPZU                                                                           
+                                                                                
+         2                                                                      
+mZigR                                                                           
+                                                                                
+         3                                                                      
+uqzAr                                                                           
+                                                                                
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+         1                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         2                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         3                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+         4                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         5                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         6                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+         7                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         8                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+         9                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+
+    NUMERO                                                                      
+----------                                                                      
+NOMBRE                                                                          
+--------------------------------------------------------------------------------
+        10                                                                      
+Nuevo dato fantasma                                                             
+                                                                                
+
+13 rows selected.
+
+SQL> 
