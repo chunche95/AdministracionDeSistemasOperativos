@@ -1,0 +1,48 @@
+El puerto 22 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+  909 ?        Ss     0:00 /usr/sbin/sshd -D
+ 
+El puerto 25 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+ 1783 ?        Ss     0:00 /usr/lib/postfix/sbin/master -w
+ 
+El puerto 53 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+  460 ?        Ss     0:00 /lib/systemd/systemd-resolved
+ 
+El puerto 68 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY          TIME CMD
+  914 ?        00:00:00 dhclient
+ 
+El puerto 80 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+13802 ?        Ss     0:00 /usr/sbin/apache2 -k start
+13803 ?        Sl     0:00 /usr/sbin/apache2 -k start
+13804 ?        Sl     0:00 /usr/sbin/apache2 -k start
+ 
+El puerto 110 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY          TIME CMD
+  857 ?        00:00:00 couriertcpd
+ 
+El puerto 143 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY          TIME CMD
+  852 ?        00:00:00 couriertcpd
+ 
+El puerto 631 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+  629 ?        Ss     0:00 /usr/sbin/cupsd -l
+  859 ?        Ssl    0:00 /usr/sbin/cups-browsed
+ 
+El puerto 5353 esta abierto, estos son sus procesos relacionados: 
+------------------------------------------------------------------------------
+  PID TTY      STAT   TIME COMMAND
+  781 ?        Ss     0:00 avahi-daemon: running [Ubuntu18.local]
+ 
