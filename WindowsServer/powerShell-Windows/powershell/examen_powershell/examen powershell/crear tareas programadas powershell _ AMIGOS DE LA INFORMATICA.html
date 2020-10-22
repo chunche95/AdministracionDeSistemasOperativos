@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html -->
+<html class="v2" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr" style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/2727757643-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<meta content="52yZAHV0-otcGRJVVTQ1_r9mfqBWTNwyFVcpBpbOleA" name="google-site-verification">
+<meta content="HW_ANB8e4i25kLMW8aS21APw_06wVswLbuDXUFbSwok" name="google-site-verification">
+<link href="https://amigos-de-la-informatica.blogspot.com/" hreflang="es-es" rel="alternate">
+<link href="https://amigos-de-la-informatica.blogspot.com/" rel="canonical">
+<meta content="width=1100" name="viewport">
+
+<meta content="blogger" name="generator">
+<link href="https://amigos-de-la-informatica.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="AMIGOS DE LA INFORMATICA - Atom" href="https://amigos-de-la-informatica.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="AMIGOS DE LA INFORMATICA - RSS" href="https://amigos-de-la-informatica.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="AMIGOS DE LA INFORMATICA - Atom" href="https://www.blogger.com/feeds/9005066353182821868/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="AMIGOS DE LA INFORMATICA - Atom" href="https://amigos-de-la-informatica.blogspot.com/feeds/277233688409225647/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/864213505-ieretrofit.js"></script>
+<![endif]-->
+<meta content="crear tareas programadas powershell,tarea programada powershell,eliminar tarea programada powershell" name="description">
+<meta content="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html" property="og:url">
+<meta content="crear tareas programadas powershell" property="og:title">
+<meta content="crear tareas programadas powershell,tarea programada powershell,eliminar tarea programada powershell" property="og:description">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<!-- <title><data:blog.pageTitle/></title>-->
+<!-- desde aqui cambio el nombre de la entrada primero luego el nombre del blog -->
+<title>crear tareas programadas powershell | AMIGOS DE LA INFORMATICA</title>
+<!-- hasta aqui cambio el nombre de la entrada primero luego el nombre del blog -->
+<style type="text/css">@font-face{font-family:'Cambria';font-style:normal;font-weight:400;src:local('Cambria'),url(//fonts.gstatic.com/l/font?kit=GFDqWAB9jnWLT-HIK7ILrg&skey=d4699178559bc4b0&v=v9)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:400;src:local('Josefin Sans Regular'),local('JosefinSans-Regular'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3aZQNVED7rKGKxtqIqX5EUAnx4RHw.woff2)format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+1EA0-1EF9,U+20AB;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:400;src:local('Josefin Sans Regular'),local('JosefinSans-Regular'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3aZQNVED7rKGKxtqIqX5EUA3x4RHw.woff2)format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:400;src:local('Josefin Sans Regular'),local('JosefinSans-Regular'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3aZQNVED7rKGKxtqIqX5EUDXx4.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:700;src:local('Josefin Sans Bold'),local('JosefinSans-Bold'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3FZQNVED7rKGKxtqIqX5EctlltdF0hspo.woff2)format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+1EA0-1EF9,U+20AB;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:700;src:local('Josefin Sans Bold'),local('JosefinSans-Bold'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3FZQNVED7rKGKxtqIqX5EctlltdV0hspo.woff2)format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'Josefin Sans';font-style:normal;font-weight:700;src:local('Josefin Sans Bold'),local('JosefinSans-Bold'),url(//fonts.gstatic.com/s/josefinsans/v12/Qw3FZQNVED7rKGKxtqIqX5Ectllte10h.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}</style>
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Blogger
+URL:      www.blogger.com
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="keycolor" description="Main Color" type="color" default="#66bbdd"/>
+<Group description="Page Text" selector="body">
+<Variable name="body.font" description="Font" type="font"
+default="normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="body.text.color" description="Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Backgrounds" selector=".body-fauxcolumns-outer">
+<Variable name="body.background.color" description="Outer Background" type="color" default="#66bbdd"/>
+<Variable name="content.background.color" description="Main Background" type="color" default="#ffffff"/>
+<Variable name="header.background.color" description="Header Background" type="color" default="transparent"/>
+</Group>
+<Group description="Links" selector=".main-outer">
+<Variable name="link.color" description="Link Color" type="color" default="#2288bb"/>
+<Variable name="link.visited.color" description="Visited Color" type="color" default="#888888"/>
+<Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff"/>
+</Group>
+<Group description="Blog Title" selector=".header h1">
+<Variable name="header.font" description="Font" type="font"
+default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="header.text.color" description="Title Color" type="color" default="#3399bb" />
+</Group>
+<Group description="Blog Description" selector=".header .description">
+<Variable name="description.text.color" description="Description Color" type="color"
+default="#777777" />
+</Group>
+<Group description="Tabs Text" selector=".tabs-inner .widget li a">
+<Variable name="tabs.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="tabs.text.color" description="Text Color" type="color" default="#999999"/>
+<Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#000000"/>
+</Group>
+<Group description="Tabs Background" selector=".tabs-outer .PageList">
+<Variable name="tabs.background.color" description="Background Color" type="color" default="#f5f5f5"/>
+<Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Post Title" selector="h3.post-title, .comments h4">
+<Variable name="post.title.font" description="Font" type="font"
+default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+</Group>
+<Group description="Date Header" selector=".date-header">
+<Variable name="date.header.color" description="Text Color" type="color"
+default="#111111"/>
+<Variable name="date.header.background.color" description="Background Color" type="color"
+default="transparent"/>
+<Variable name="date.header.font" description="Text Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="date.header.padding" description="Date Header Padding" type="string" default="inherit"/>
+<Variable name="date.header.letterspacing" description="Date Header Letter Spacing" type="string" default="inherit"/>
+<Variable name="date.header.margin" description="Date Header Margin" type="string" default="inherit"/>
+</Group>
+<Group description="Post Footer" selector=".post-footer">
+<Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666"/>
+<Variable name="post.footer.background.color" description="Background Color" type="color"
+default="#f9f9f9"/>
+<Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Gadgets" selector="h2">
+<Variable name="widget.title.font" description="Title Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.title.text.color" description="Title Color" type="color" default="#000000"/>
+<Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999"/>
+</Group>
+<Group description="Images" selector=".main-inner">
+<Variable name="image.background.color" description="Background Color" type="color" default="#ffffff"/>
+<Variable name="image.border.color" description="Border Color" type="color" default="#eeeeee"/>
+<Variable name="image.text.color" description="Caption Text Color" type="color" default="#111111"/>
+</Group>
+<Group description="Accents" selector=".content-inner">
+<Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee"/>
+<Variable name="tabs.border.color" description="Tabs Border Color" type="color" default="#eeeeee"/>
+</Group>
+<Variable name="body.background" description="Body Background" type="background"
+color="#2288bb" default="$(color) none repeat scroll top left"/>
+<Variable name="body.background.override" description="Body Background Override" type="string" default=""/>
+<Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
+default="url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png)"/>
+<Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
+default="url(https://resources.blogblog.com/blogblog/data/1kt/simple/body_gradient_tile_light.png)"/>
+<Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner"/>
+<Variable name="content.padding" description="Content Padding" type="length" default="10px" min="0" max="100px"/>
+<Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="10px" min="0" max="100px"/>
+<Variable name="content.shadow.spread" description="Content Shadow Spread" type="length" default="40px" min="0" max="100px"/>
+<Variable name="content.shadow.spread.webkit" description="Content Shadow Spread (WebKit)" type="length" default="5px" min="0" max="100px"/>
+<Variable name="content.shadow.spread.ie" description="Content Shadow Spread (IE)" type="length" default="10px" min="0" max="100px"/>
+<Variable name="main.border.width" description="Main Border Width" type="length" default="0" min="0" max="10px"/>
+<Variable name="header.background.gradient" description="Header Gradient" type="url" default="none"/>
+<Variable name="header.shadow.offset.left" description="Header Shadow Offset Left" type="length" default="-1px" min="-50px" max="50px"/>
+<Variable name="header.shadow.offset.top" description="Header Shadow Offset Top" type="length" default="-1px" min="-50px" max="50px"/>
+<Variable name="header.shadow.spread" description="Header Shadow Spread" type="length" default="1px" min="0" max="100px"/>
+<Variable name="header.padding" description="Header Padding" type="length" default="30px" min="0" max="100px"/>
+<Variable name="header.border.size" description="Header Border Size" type="length" default="1px" min="0" max="10px"/>
+<Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="1px" min="0" max="10px"/>
+<Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0" min="0" max="10px"/>
+<Variable name="description.text.size" description="Description Text Size" type="string" default="140%"/>
+<Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0" min="0" max="100px"/>
+<Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px" min="0" max="100px"/>
+<Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
+default="url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png)"/>
+<Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px" min="0" max="10px"/>
+<Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px" min="0" max="10px"/>
+<Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="25px" min="0" max="100px"/>
+<Variable name="image.border.small.size" description="Image Border Small Size" type="length" default="2px" min="0" max="10px"/>
+<Variable name="image.border.large.size" description="Image Border Large Size" type="length" default="5px" min="0" max="10px"/>
+<Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner"/>
+<Variable name="page.width" description="Page Width" type="string" default="auto"/>
+<Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px" min="0" max="100px"/>
+<Variable name="main.padding" description="Main Padding" type="length" default="15px" min="0" max="100px"/>
+<Variable name="main.padding.top" description="Main Padding Top" type="length" default="30px" min="0" max="100px"/>
+<Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="30px" min="0" max="100px"/>
+<Variable name="paging.background"
+color="#fafafa"
+description="Background of blog paging area" type="background"
+default="transparent none no-repeat scroll top center"/>
+<Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0" min="0" max="10px"/>
+<Variable name="mobile.background.overlay" description="Mobile Background Overlay" type="string"
+default="transparent none repeat scroll top left"/>
+<Variable name="mobile.background.size" description="Mobile Background Size" type="string" default="auto"/>
+<Variable name="mobile.button.color" description="Mobile Button Color" type="color" default="#ffffff" />
+<Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left"/>
+<Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right"/>
+*/
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 16px Cambria;
+color: #111111;
+background: #2288bb none repeat scroll top left;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+h2 {
+font-size: 22px;
+}
+a:link {
+text-decoration:none;
+color: #bb007d;
+}
+a:visited {
+text-decoration:none;
+color: #bb007d;
+}
+a:hover {
+text-decoration:underline;
+color: #2288bb;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent url(https://resources.blogblog.com/blogblog/data/1kt/simple/body_gradient_tile_light.png) repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png) repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #fafafa;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: transparent none repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h1 {
+font: normal normal 50px Josefin Sans;
+color: #2288bb;
+text-shadow: -1px -1px 1px rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #2288bb;
+}
+.Header .description {
+font-size: 140%;
+color: #000000;
+}
+.header-inner .Header .titlewrapper {
+padding: 22px 30px;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 30px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 1px solid #eeeeee;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -1px;
+border-top: 1px solid #eeeeee;
+border-left: 0 solid #eeeeee;
+border-right: 0 solid #eeeeee;
+}
+.tabs-inner .widget ul {
+background: #f5f5f5 url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #eeeeee;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #000000;
+border-left: 1px solid #fafafa;
+border-right: 1px solid #eeeeee;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #999999;
+background-color: #eeeeee;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #eeeeee;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #eeeeee;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #eeeeee;
+}
+/* Headings
+----------------------------------------------- */
+div.widget > h2,
+div.widget h2.title {
+margin: 0 0 1em 0;
+font: normal bold 14px Josefin Sans;
+color: #2288bb;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+h2.date-header {
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+.date-header span {
+background-color: transparent;
+color: #222222;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 25px 0;
+}
+h3.post-title, .comments h4 {
+font: normal normal 30px Josefin Sans;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #2288bb;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #222222;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #666666;
+background-color: #f9f9f9;
+border-bottom: 1px solid #eeeeee;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #eeeeee;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #2288bb;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .comment-thread.inline-thread {
+background-color: #f9f9f9;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #eeeeee;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #fafafa;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #fafafa;
+}
+.mobile-index-contents {
+color: #111111;
+}
+.mobile-link-button {
+background-color: #bb007d;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #7dbb00;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #eeeeee;
+color: #999999;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid #eeeeee;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #eeeeee;
+}
+.feed-links {
+visibility:hidden;
+display:none;
+}
+
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 1200px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1200px;
+max-width: 1200px;
+_width: 1200px;
+}
+.main-inner .columns {
+padding-left: 200px;
+padding-right: 210px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 200px;
+right: 210px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("200px") -
+parseInt("210px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 200px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 210px;
+}
+.main-inner .column-left-outer {
+width: 200px;
+right: 100%;
+margin-left: -200px;
+}
+.main-inner .column-right-outer {
+width: 210px;
+margin-right: -210px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+body#layout div.add_widget {
+padding: 8px;
+}
+body#layout div.add_widget a {
+margin-left: 32px;
+}
+--></style>
+<script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cb=gapi.loaded_3" async=""></script><script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cb=gapi.loaded_2" async=""></script><script id="facebook-jssdk" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/sdk.js.descarga"></script><script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cb=gapi.loaded_1" async=""></script><script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cb=gapi(1).loaded_0" async=""></script><script async="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/analytics.js.descarga"></script><script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-59811698-1', 'auto', 'blogger');
+        ga('blogger.send', 'pageview');
+      </script>
+<!-- para quitar tecnologia bloggerrrrrrrrrrrrrrrrrrrrrrrrrrrr-->
+<style>
+#Attribution1 {
+display: none;
+}
+<!-- hasta aqui quitar tecnologia bloggerrrrrrrrrrrrrrrrrrrrrrrr-->
+</style>
+<!-- Aqui meto publicidad de moviles y tablets en forma de metaetiqueta-->
+<!-- <meta content='width=device-width, initial-scale=1' name='viewport'/> -->
+<!-- desde aqui anuncios automaticos errrrrrrrrrrrrrrrrrrrrrrr-->
+<script async="async" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1381355061508555",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- hasta aqui anuncios automaticosrrrrrrrrrrrrrrrrrrrrrrr-->
+<link href="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/authorization.css" media="all" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=9005066353182821868&amp;zx=4fa9493c-6ac4-42f0-ae6d-3da6265288a1' rel='stylesheet'/></noscript>
+
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
+
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/main_es.js.descarga"></script><script type="text/javascript" charset="UTF-8" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/element_main.js.descarga"></script><style class="singleton-element" type="text/css">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style><script async="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/lazy.min.js.descarga"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#1d3c78;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style></head>
+<body class="" style="position: relative; min-height: 100%; top: 0px;">
+<div class="navbar no-items section" id="navbar" name="Barra de navegación">
+</div>
+<div class="body-fauxcolumns">
+<div class="fauxcolumn-outer body-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="content-fauxcolumns">
+<div class="fauxcolumn-outer content-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content-outer">
+<div class="content-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left content-fauxborder-left">
+<div class="fauxborder-right content-fauxborder-right"></div>
+<div class="content-inner">
+<header>
+<div class="header-outer">
+<div class="header-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left header-fauxborder-left">
+<div class="fauxborder-right header-fauxborder-right"></div>
+<div class="region-inner header-inner">
+<div class="header section" id="header" name="Cabecera"><div class="widget Header" data-version="1" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="https://amigos-de-la-informatica.blogspot.com/">
+AMIGOS DE LA INFORMATICA
+</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>Blog dedicado a temas relacionados con la informática y la tecnología .Aqui encontraras ejercicios resueltos de java, php y visual basic etc.
+Tambien encontraras tutoriales enfocado para el usuario normal .</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</header>
+<div class="tabs-outer">
+<div class="tabs-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left tabs-fauxborder-left">
+<div class="fauxborder-right tabs-fauxborder-right"></div>
+<div class="region-inner tabs-inner">
+<div class="tabs section" id="crosscol" name="Multicolumnas"><div class="widget Translate" data-version="1" id="Translate1">
+<h2 class="title">Translate-Traducir</h2>
+<div id="google_translate_element"><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage" class="goog-te-gadget-simple" style="white-space: nowrap;"><img src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cleardot.gif" class="goog-te-gadget-icon" alt="" style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;"><span style="vertical-align: middle;"><a aria-haspopup="true" class="goog-te-menu-value" href="javascript:void(0)"><span>Seleccionar idioma</span><img src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cleardot.gif" alt="" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cleardot.gif" alt="" width="1" height="1"><span aria-hidden="true" style="color: rgb(118, 118, 118);">▼</span></a></span></div></div></div>
+<script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        autoDisplay: 'true',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+<script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/f(1).txt"></script>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=Translate&amp;widgetId=Translate1&amp;action=editWidget&amp;sectionId=crosscol" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Translate1&quot;));" rel="nofollow" target="configTranslate1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+<div class="tabs no-items section" id="crosscol-overflow" name="Cross-Column 2"></div>
+</div>
+</div>
+<div class="tabs-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="main-outer">
+<div class="main-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left main-fauxborder-left">
+<div class="fauxborder-right main-fauxborder-right"></div>
+<div class="region-inner main-inner">
+<div class="columns fauxcolumns">
+<div class="fauxcolumn-outer fauxcolumn-center-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-left-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-right-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class="columns-inner">
+<div class="column-center-outer">
+<div class="column-center-inner">
+<div class="main section" id="main" name="Principal"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="blog-posts hfeed">
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>30/4/18</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry uncustomized-post-template" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta content="9005066353182821868">
+<meta content="277233688409225647">
+<a name="277233688409225647"></a>
+<h1 class="post-title entry-title" itemprop="headline">
+crear tareas programadas powershell
+</h1>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-277233688409225647" itemprop="articleBody">
+<h2>
+crear tareas programadas powershell</h2>
+<div>
+Para crear tareas programadas usando&nbsp; script powershell hay que saber los parámetros que debe contener el código para que funcione.</div>
+<div>
+Aqui les dejo un enlace de los parámetros que se usan frecuentemente.</div>
+<div>
+<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb736357(v=vs.85).aspx" target="_blank">Parametros de tareas programadas.</a></div>
+<div>
+<br></div>
+<div>
+Y a continuación les dejo el código del Script en powershell&nbsp; para crear una tarea programada diariamente ,luego ustedes pueden ajustarlos a sus necesidades.</div>
+<div>
+<br></div>
+<div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">clear-host</span><span lang="EN-US" style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">write-host</span><span lang="EN-US" style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"> <span style="color: darkred;">""</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">write-host</span><span lang="EN-US" style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"> <span style="color: darkred;">"|***************************************|"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">write-host</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"> <span style="color: darkred;">"|
+VAMOS A CREAR /// ELIMINAR /// LISTAR |"</span><span style="color: navy;">-backgroundcolor</span>
+<span style="color: darkred;">"red"</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: darkred;">"|
+1.- Crear una tarea&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: darkred;">"|
+2.- Eliminar una tarea&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|"</span> <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: darkred;">"|
+3.- Listar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: darkred;">"|
+4.- Salir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: darkred;">"|***************************************|"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: orangered; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">$opciontareas</span><span style="color: darkgrey; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">=</span><span style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">read-host</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"> <span style="color: darkred;">"ELIJE
+UNA OPCION"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: darkblue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">switch</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">(<span style="color: orangered;">$opciontareas</span>)<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: purple; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">1</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<span style="color: orangered;">$ruta</span><span style="color: darkgrey;">=</span><span style="color: blue;">read-host</span> <span style="color: darkred;">"Pon la ruta donde se encuentra el Script ó el
+programa que deseas ejecutar"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp; <span style="color: orangered;">$nombre</span><span style="color: darkgrey;">=</span><span style="color: blue;">read-host</span> <span style="color: darkred;">"Como quieres llamar a tu tarea"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: orangered; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp; $hora</span><span style="color: darkgrey; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">=</span><span style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">read-host</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">
+<span style="color: darkred;">"Define la hora para ejecutar la tarea con el
+siguiente formato 'HH:MM:SS'"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp; </span><span lang="EN-US" style="color: blue; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">schtasks</span><span lang="EN-US" style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;"> <span style="color: blueviolet;">/create</span> <span style="color: blueviolet;">/sc</span> <span style="color: blueviolet;">daily</span>
+<span style="color: blueviolet;">/tn</span> <span style="color: orangered;">$nombre</span>
+<span style="color: blueviolet;">/tr</span> <span style="color: orangered;">$ruta</span>
+<span style="color: blueviolet;">/st</span> <span style="color: orangered;">$hora</span>&nbsp; <o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span lang="EN-US" style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp;</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">}<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: purple; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">2</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<span style="color: orangered;">$nombre</span><span style="color: darkgrey;">=</span><span style="color: blue;">read-host</span> <span style="color: darkred;">"Como se llama la tarea a eliminar"</span><o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">&nbsp; <span style="color: blue;">schtasks</span> <span style="color: blueviolet;">/delete</span> <span style="color: blueviolet;">/tn</span>
+<span style="color: orangered;">$nombre</span> <span style="color: blueviolet;">/f</span>}<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: purple; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">3</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<span style="color: blue;">schtasks</span>
+<span style="color: blueviolet;">/query</span>}<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: purple; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">4</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<span style="color: darkblue;">exit</span>}<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="color: blueviolet; font-family: &quot;lucida console&quot;; font-size: 9.0pt;">default</span><span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">{<span style="color: blue;">write-host</span>
+<span style="color: darkred;">"No es una opcion valida"</span>}<o:p></o:p></span></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<br></div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+</div>
+<div class="MsoNormal" style="background: white; line-height: normal; margin-bottom: .0001pt; margin-bottom: 0cm; mso-layout-grid-align: none; text-autospace: none;">
+<span style="font-family: &quot;lucida console&quot;; font-size: 9.0pt;">}<o:p></o:p></span></div>
+</div>
+<div>
+<br></div>
+<div>
+Donde pone la $ruta ,hay que poner donde se encuentra el ejecutable .exe&nbsp; ó .ps1</div>
+<div>
+<br></div>
+<div>
+Por ejemplo si queremos que se ejecute la calculadora de windows tendríamos que poner</div>
+<div>
+$ruta=&nbsp;<span style="color: #454545; font-family: &quot;segoe ui&quot; , &quot;lucida grande&quot; , &quot;verdana&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: 14px;">C:\Windows\System32\calc.exe.&nbsp;</span>&nbsp;en el caso de ser programa del sistema ó ,</div>
+<div>
+$ruta=&nbsp;<span style="color: #454545; font-family: &quot;segoe ui&quot; , &quot;lucida grande&quot; , &quot;verdana&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><span style="font-size: 14px;">C:\Users\PC2\Documents\apagar.ps1&nbsp;&nbsp;</span></span>en el caso&nbsp; de ser un Script.</div>
+<div>
+<span style="color: #454545; font-family: &quot;segoe ui&quot; , &quot;lucida grande&quot; , &quot;verdana&quot; , &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: 14px;"><br></span></div>
+Espero que se haya&nbsp; entendido y les dejo otro enlace donde se muestra la creación y eliminación de usuarios con powershell .<br>
+<div>
+<br></div>
+<div>
+<a href="https://amigos-de-la-informatica.blogspot.com/2017/07/crear-eliminar-usuarios-en-powershell.html" target="_blank">Crear eliminar usuarios en powershell.</a></div>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1">
+<span class="post-author vcard">
+Publicado por
+<span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+<meta content="https://www.blogger.com/profile/07625586597386510594" itemprop="url">
+<a class="g-profile" href="https://www.blogger.com/profile/07625586597386510594" rel="author" title="author profile" data-gapiscan="true" data-onload="true" data-gapiattached="true">
+<span itemprop="name">Teresa</span>
+</a>
+</span>
+</span>
+<span class="post-timestamp">
+en
+<meta content="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html" itemprop="url">
+<a class="timestamp-link" href="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html" rel="bookmark" title="permanent link"><abbr class="published" itemprop="datePublished" title="2018-04-30T19:22:00+02:00">4/30/2018 07:22:00 p. m.</abbr></a>
+</span>
+<span class="reaction-buttons">
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-backlinks post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-action">
+<a href="https://www.blogger.com/email-post.g?blogID=9005066353182821868&amp;postID=277233688409225647" title="Enviar entrada por correo electrónico">
+<img alt="" class="icon-action" height="13" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_email.gif" width="18">
+</a>
+</span>
+<span class="item-control blog-admin pid-1051919021">
+<a href="https://www.blogger.com/post-edit.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;from=pencil" title="Editar entrada">
+<img alt="" class="icon-action" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+<div class="post-share-buttons goog-inline-block">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;target=email" target="_blank" title="Enviar por correo electrónico"><span class="share-button-link-text">Enviar por correo electrónico</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;target=blog" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=270,width=475&quot;); return false;" target="_blank" title="Escribe un blog"><span class="share-button-link-text">Escribe un blog</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;target=twitter" target="_blank" title="Compartir con Twitter"><span class="share-button-link-text">Compartir con Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;target=facebook" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=430,width=640&quot;); return false;" target="_blank" title="Compartir con Facebook"><span class="share-button-link-text">Compartir con Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=9005066353182821868&amp;postID=277233688409225647&amp;target=pinterest" target="_blank" title="Compartir en Pinterest"><span class="share-button-link-text">Compartir en Pinterest</span></a><div class="goog-inline-block google-plus-share-container"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 32px; height: 20px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 32px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1543970324858" name="I0_1543970324858" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/fastbutton.html" data-gapiattached="true" title="G+"></iframe></div></div>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2">
+<span class="post-labels">
+Etiquetas:
+<a href="https://amigos-de-la-informatica.blogspot.com/search/label/powershell" rel="tag">powershell</a>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3">
+<span class="post-location">
+</span>
+</div>
+</div>
+</div>
+<script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/plusone.js.descarga" type="text/javascript" gapi_processed="true"></script>
+<div class="cmt_iframe_holder" data-href="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html" data-viewtype="" id="gpluscomments" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 711px; height: 600px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 711px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 600px;" tabindex="0" vspace="0" width="100%" id="I1_1543970325579" name="I1_1543970325579" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/comments.html" data-gapiattached="true" title="Comenta esto"></iframe></div>
+<a href="https://www.blogger.com/comment.g?blogID=9005066353182821868&amp;postID=277233688409225647" onclick="">Publicar un comentario</a>
+</div>
+<div class="inline-ad">
+</div>
+
+        </div></div>
+      
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="https://amigos-de-la-informatica.blogspot.com/2018/05/calculadora-java-windowbuilder.html" id="Blog1_blog-pager-newer-link" title="Entrada más reciente">Entrada más reciente</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="https://amigos-de-la-informatica.blogspot.com/2018/04/conversion-celsius-fahrenheit-python.html" id="Blog1_blog-pager-older-link" title="Entrada antigua">Entrada antigua</a>
+</span>
+<a class="home-link" href="https://amigos-de-la-informatica.blogspot.com/">Página principal</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Suscribirse a:
+<a class="feed-link" href="https://amigos-de-la-informatica.blogspot.com/feeds/277233688409225647/comments/default" target="_blank" type="application/atom+xml">Enviar comentarios (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">
+    window.___gcfg = { 'lang': 'es' };
+  </script>
+</div></div>
+</div>
+</div>
+<div class="column-left-outer">
+<div class="column-left-inner">
+<aside>
+<div class="sidebar section" id="sidebar-left-1"><div class="widget Stats" data-version="1" id="Stats1">
+<h2>VISITAS AL BLOG</h2>
+<div class="widget-content">
+<div id="Stats1_content" style="">
+<img alt="Sparkline" height="30" id="Stats1_sparkline" width="75" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/chart">
+<span class="counter-wrapper graph-counter-wrapper" id="Stats1_totalCount">
+<span class="digit stage-0"><strong>4</strong><span class="blind-plate"></span></span><span class="digit stage-0"><strong>3</strong><span class="blind-plate"></span></span><span class="digit stage-0"><strong>6</strong><span class="blind-plate"></span></span><span class="digit stage-0"><strong>0</strong><span class="blind-plate"></span></span><span class="digit stage-0"><strong>7</strong><span class="blind-plate"></span></span></span>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=Stats&amp;widgetId=Stats1&amp;action=editWidget&amp;sectionId=sidebar-left-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Stats1&quot;));" rel="nofollow" target="configStats1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+</div><div class="widget BlogArchive" data-version="1" id="BlogArchive1">
+<h2>OTROS TUTORIALES</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/">
+2014
+</a>
+<span class="post-count" dir="ltr">(29)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/05/">
+may 2014
+</a>
+<span class="post-count" dir="ltr">(9)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/06/">
+jun 2014
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/07/">
+jul 2014
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/08/">
+ago 2014
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/09/">
+sep 2014
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/10/">
+oct 2014
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/11/">
+nov 2014
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2014/12/">
+dic 2014
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2015/">
+2015
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2015/01/">
+ene 2015
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2015/02/">
+feb 2015
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/">
+2016
+</a>
+<span class="post-count" dir="ltr">(10)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/05/">
+may 2016
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/06/">
+jun 2016
+</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/07/">
+jul 2016
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/08/">
+ago 2016
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2016/10/">
+oct 2016
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2017/">
+2017
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2017/06/">
+jun 2017
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2017/07/">
+jul 2017
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2018/">
+2018
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2018/04/">
+abr 2018
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+<ul class="posts">
+<li><a href="https://amigos-de-la-informatica.blogspot.com/2018/04/conversion-celsius-fahrenheit-python.html">conversion celsius fahrenheit python</a></li>
+<li><a href="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html">crear tareas programadas powershell</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://amigos-de-la-informatica.blogspot.com/2018/05/">
+may 2018
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar-left-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" rel="nofollow" target="configBlogArchive1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" data-version="1" id="HTML2">
+<div class="widget-content">
+<script async="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/f.txt"></script>
+<!-- Publi Izquierda -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1381355061508555" data-ad-slot="9283701622" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=HTML&amp;widgetId=HTML2&amp;action=editWidget&amp;sectionId=sidebar-left-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML2&quot;));" rel="nofollow" target="configHTML2" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</aside>
+</div>
+</div>
+<div class="column-right-outer">
+<div class="column-right-inner">
+<aside>
+<div class="sidebar section" id="sidebar-right-1"><div class="widget FollowByEmail" data-version="1" id="FollowByEmail1">
+<h2 class="title">SIGUEME</h2>
+<div class="widget-content">
+<div class="follow-by-email-inner">
+<form action="https://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&quot;https://feedburner.google.com/fb/a/mailverify?uri=AmigosDeLaInformatica&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true" target="popupwindow">
+<table width="100%">
+<tbody><tr>
+<td>
+<input class="follow-by-email-address" name="email" placeholder="Email address..." type="text">
+</td>
+<td width="64px">
+<input class="follow-by-email-submit" type="submit" value="Submit">
+</td>
+</tr>
+</tbody></table>
+<input name="uri" type="hidden" value="AmigosDeLaInformatica">
+<input name="loc" type="hidden" value="en_US">
+</form>
+</div>
+</div>
+<span class="item-control blog-admin">
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=FollowByEmail&amp;widgetId=FollowByEmail1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;FollowByEmail1&quot;));" rel="nofollow" target="configFollowByEmail1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</span>
+</div><div class="widget HTML" data-version="1" id="HTML1">
+<div class="widget-content">
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/7LloFuHvA7I.html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like fb_iframe_widget" data-href="https://amigos-de-la-informatica.blogspot.com.es/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=150&amp;href=https%3A%2F%2Famigos-de-la-informatica.blogspot.com.es%2F&amp;layout=button&amp;locale=es_ES&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;size=small"><span style="vertical-align: bottom; width: 143px; height: 20px;"><iframe name="f23a423f234ccc8" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:like Facebook Social Plugin" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/like.html" style="border: none; visibility: visible; width: 143px; height: 20px;" class=""></iframe></span></div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML1&quot;));" rel="nofollow" target="configHTML1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget AdSense" data-version="1" id="AdSense1">
+<div class="widget-content">
+<script async="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/f.txt"></script>
+<!-- amigos-de-la-informatica_sidebar-right-1_AdSense1_1x1_as -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1381355061508555" data-ad-host="ca-host-pub-1556223355139109" data-ad-host-channel="L0001" data-ad-slot="8519331733" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=AdSense&amp;widgetId=AdSense1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;AdSense1&quot;));" rel="nofollow" target="configAdSense1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget PopularPosts" data-version="1" id="PopularPosts1">
+<h2>LO MAS VISTO</h2>
+<div class="widget-content popular-posts">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/05/aqui-les-traigo-el-juego-de-ping-pon.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/Pinpong.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/05/aqui-les-traigo-el-juego-de-ping-pon.html">Juego ping pong java codigo</a></div>
+<div class="item-snippet">Aqui les traigo el juego de ping pon para 2 jugadores &nbsp;el primero se juega con las letras A y Z  y el segundo con flecha ARRIBA y flecha ABA...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/05/ejercicio-java-maquina-de-bebidas.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/maquina.png">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/05/ejercicio-java-maquina-de-bebidas.html">Ejercicio Java Maquina de Bebidas WindowBuilder</a></div>
+<div class="item-snippet">   Ejercicio Java Maquina de Bebidas WindowBuilder   El codigo esta abajo de &nbsp;la pregunta.   Esto es un ejemplo de maquina expendedora de be...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/12/como-evitar-que-los-programas-pidan-serial.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/firewall11.png">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/12/como-evitar-que-los-programas-pidan-serial.html">Como evitar que los programas pidan serial</a></div>
+<div class="item-snippet"> Como evitar que los programas pidan serial     Los programas que son pago &nbsp;(corel draw x6 ,photoshop ,camtasia,etc ) y también los que no s...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/08/header-location-no-redirecciona.html">header location no redirecciona</a></div>
+<div class="item-snippet"> header Location no redirecciona   Una de las posibles causas de que el header no redireccione es por haber mostrado algo por pantalla.&nbsp;  El...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2016/05/calculadora-html-javascript.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/calculadorahtml.png">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2016/05/calculadora-html-javascript.html">Calculadora html JavaScript</a></div>
+<div class="item-snippet">     Calculadora Html y JavaScript bueno después de mucho tiempo ya era hora de hacer un nuevo post   en este caso les traigo una calculador...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2016/06/escribir-un-algoritmo-programa-y-crear.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/subir.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2016/06/escribir-un-algoritmo-programa-y-crear.html">Escribir un algoritmo-programa y crear un menu en python</a></div>
+<div class="item-snippet">Escribir un algoritmo-programa y crear un menu en python usando un bucle while  que haga lo siguiente:  Mostrar el factorial de un numero en...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/05/ejercicio-de-java-dias-horas-minutos.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/dia.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/05/ejercicio-de-java-dias-horas-minutos.html">Ejercicio de java dias horas minutos</a></div>
+<div class="item-snippet">Escribir un algoritmo-programa en java que pida por teclado 4 valores de tipo float ( dias horas minutos y segundos), hacer un menu &nbsp;tipo sw...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2016/06/menu-desplegable-html-css.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/menudesplegablesincss.png">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2016/06/menu-desplegable-html-css.html">Menu desplegable html Css </a></div>
+<div class="item-snippet"> Menu desplegable html y css sin JavaScript  En este post crearemos un menu desplegable con html y Css.  Un menu desplegable con html no es ...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/07/guardar-marcadores-o-favoritos-para.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/tuto.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/07/guardar-marcadores-o-favoritos-para.html">Guardar marcadores  o favoritos para formatear </a></div>
+<div class="item-snippet">  Guardar marcadores &nbsp;o favoritos para formatear Opción B.    En esta ocasión les muestro la forma de como guardar &nbsp;marcadores o favoritos p...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://amigos-de-la-informatica.blogspot.com/2014/08/emulador-android-bluestacks-otra-opcion.html" target="_blank">
+<img alt="" border="0" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/pagina.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://amigos-de-la-informatica.blogspot.com/2014/08/emulador-android-bluestacks-otra-opcion.html">Emulador  android BlueStacks otra opcion al emulador de app inventor</a></div>
+<div class="item-snippet">   Emulador &nbsp;android BlueStacks otra&nbsp;opción&nbsp;al emulador de app&nbsp;inventor.  Al crear una&nbsp;aplicación&nbsp;en app inventor lo mas probable es que&nbsp;que...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=PopularPosts&amp;widgetId=PopularPosts1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PopularPosts1&quot;));" rel="nofollow" target="configPopularPosts1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+</aside>
+</div>
+</div>
+</div>
+<div style="clear: both"></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class="main-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<footer>
+<div class="footer-outer">
+<div class="footer-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left footer-fauxborder-left">
+<div class="fauxborder-right footer-fauxborder-right"></div>
+<div class="region-inner footer-inner">
+<div class="foot section" id="footer-1"><div class="widget HTML" data-version="1" id="HTML3">
+<div class="widget-content">
+<script async="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/f.txt"></script><!-- Publi Moviles y tablets -->
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-1381355061508555",
+    enable_page_level_ads: true
+  });
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=HTML&amp;widgetId=HTML3&amp;action=editWidget&amp;sectionId=footer-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML3&quot;));" rel="nofollow" target="configHTML3" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+<table border="0" cellpadding="0" cellspacing="0" class="section-columns columns-2">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="foot no-items section" id="footer-2-1"></div>
+</td>
+<td class="columns-cell">
+<div class="foot no-items section" id="footer-2-2"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class="foot section" id="footer-3" name="Pie de página"><div class="widget Attribution" data-version="1" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Con la tecnología de <a href="https://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=9005066353182821868&amp;widgetType=Attribution&amp;widgetId=Attribution1&amp;action=editWidget&amp;sectionId=footer-3" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Attribution1&quot;));" rel="nofollow" target="configAttribution1" title="Editar">
+<img alt="" height="18" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="footer-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class="content-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<script src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/plusone.js.descarga" type="text/javascript" gapi_processed="true"></script>
+<!--Eres el responsable de informar a los visitantes de tu blog qu\xe9 cookies utilizas y qu\xe9 datos suyos se recogen. Blogger facilita una notificaci\xf3n est\xe1ndar para que la uses en tu blog, aunque puedes personalizarla o crear tu propia notificaci\xf3n. Consulta http://www.blogger.com/go/cookiechoices para obtener m\xe1s informaci\xf3n.-->
+<script defer="" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/cookienotice.js.descarga"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+      window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+          (window.cookieOptions && cookieOptions.msg) || 'Este sitio utiliza cookies de Google para prestar sus servicios y para analizar su tr\xe1fico. Tu direcci\xf3n IP y user-agent se comparten con Google, junto con las m\xe9tricas de rendimiento y de seguridad, para garantizar la calidad del servicio, generar estad\xedsticas de uso y detectar y solucionar abusos.',
+          (window.cookieOptions && cookieOptions.close) || 'Aceptar',
+          (window.cookieOptions && cookieOptions.learn) || 'M\xe1s informaci\xf3n',
+          (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+    });
+  </script>
+
+<script type="text/javascript" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/3234676992-widgets.js.descarga"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY5JNq7u0ReryPFzoquiNI52Cl4lUQ:1543970323830';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d9005066353182821868','//amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html','9005066353182821868');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '9005066353182821868', 'title': 'AMIGOS DE LA INFORMATICA', 'url': 'https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html', 'canonicalUrl': 'https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html', 'homepageUrl': 'https://amigos-de-la-informatica.blogspot.com/', 'searchUrl': 'https://amigos-de-la-informatica.blogspot.com/search', 'canonicalHomepageUrl': 'https://amigos-de-la-informatica.blogspot.com/', 'blogspotFaviconUrl': 'https://amigos-de-la-informatica.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-59811698-1', 'encoding': 'UTF-8', 'locale': 'es', 'localeUnderscoreDelimited': 'es', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AMIGOS DE LA INFORMATICA - Atom\x22 href\x3d\x22https://amigos-de-la-informatica.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22AMIGOS DE LA INFORMATICA - RSS\x22 href\x3d\x22https://amigos-de-la-informatica.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AMIGOS DE LA INFORMATICA - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/9005066353182821868/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AMIGOS DE LA INFORMATICA - Atom\x22 href\x3d\x22https://amigos-de-la-informatica.blogspot.com/feeds/277233688409225647/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseClientId': 'ca-pub-1381355061508555', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': true, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/864213505-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/4c850c49ae3d7838', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'Obtener enlace', 'key': 'link', 'shareMessage': 'Obtener enlace', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Compartir en Facebook', 'target': 'facebook'}, {'name': 'Escribe un blog', 'key': 'blogThis', 'shareMessage': 'Escribe un blog', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Compartir en Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Compartir en Pinterest', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Compartir en Google+', 'target': 'googleplus'}, {'name': 'Correo electrónico', 'key': 'email', 'shareMessage': 'Correo electrónico', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27es\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Leer más', 'pageType': 'item', 'postId': '277233688409225647', 'pageName': 'crear tareas programadas powershell', 'pageTitle': 'AMIGOS DE LA INFORMATICA: crear tareas programadas powershell', 'metaDescription': 'crear tareas programadas powershell,tarea programada powershell,eliminar tarea programada powershell'}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Editar', 'linkCopiedToClipboard': 'El enlace se ha copiado en el Portapapeles.', 'ok': 'Aceptar', 'postLink': 'Enlace de la entrada'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Personalizado', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'crear tareas programadas powershell', 'description': 'crear tareas programadas powershell,tarea programada powershell,eliminar tarea programada powershell', 'url': 'https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 277233688409225647}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TranslateView', new _WidgetInfo('Translate1', 'crosscol', document.getElementById('Translate1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'showBacklinks': true, 'postId': '277233688409225647', 'legacyCommentModerationUrl': 'https://www.blogger.com/moderate-legacy-comment.g?blogID\x3d9005066353182821868', 'iframeCommentsId': 'gpluscomments', 'viewType': 'FILTERED_POSTMOD', 'useNgc': true, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/4067769293-lbx__es.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'sidebar-left-1', document.getElementById('Stats1'), {'title': 'VISITAS AL BLOG', 'showGraphicalCounter': true, 'showAnimatedCounter': true, 'showSparkline': true, 'statsUrl': '//amigos-de-la-informatica.blogspot.com/b/stats?style\x3dWHITE_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3dAPq4FmBAk3VAWCFz9an8gGwmy-naLlRNg8UBQye1NxGR3I2uaySiop01TaeHTWFxZrLkTYhNCIHj3ft1i2ciOS_J3wq7tUMSNQ'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-left-1', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Cargando\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'sidebar-left-1', document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowByEmailView', new _WidgetInfo('FollowByEmail1', 'sidebar-right-1', document.getElementById('FollowByEmail1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar-right-1', document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar-right-1', document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'sidebar-right-1', document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'footer-1', document.getElementById('HTML3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/translate_24dp.png" width="20" height="20" alt="Google Traductor de Google"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Texto original</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Sugiere una traducción mejor</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div id="cookieChoiceInfo" class="cookie-choices-info singleton-element"><div class="cookie-choices-inner"><span class="cookie-choices-text">Este sitio utiliza cookies de Google para prestar sus servicios y para analizar su tráfico. Tu dirección IP y user-agent se comparten con Google, junto con las métricas de rendimiento y de seguridad, para garantizar la calidad del servicio, generar estadísticas de uso y detectar y solucionar abusos.</span><span class="cookie-choices-buttons"><a href="https://www.blogger.com/go/blogspot-cookies" target="_blank" class="cookie-choices-button">Más información</a><a id="cookieChoiceDismiss" href="https://amigos-de-la-informatica.blogspot.com/2018/04/crear-tareas-programadas-powershell.html#" class="cookie-choices-button">Aceptar</a></span></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe frameborder="0" class="goog-te-menu-frame skiptranslate" title="Widget de idiomas del Traductor" style="visibility: visible; box-sizing: content-box; width: 944px; height: 263px; display: none;" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/saved_resource.html"></iframe><iframe name="oauth2relay616197297" id="oauth2relay616197297" src="./crear tareas programadas powershell _ AMIGOS DE LA INFORMATICA_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

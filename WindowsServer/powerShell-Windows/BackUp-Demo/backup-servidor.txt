@@ -1,0 +1,5 @@
+option batch on
+ option confirm off
+ open root@pau.es
+ get /var/lib/psa/dumps/* E:\BACKUP_SERVIDOR\%fechasistema%\*
+ exit
