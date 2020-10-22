@@ -10,6 +10,7 @@ El desarrollo de Linux es uno de los ejemplos más claros de desarrollo de softw
 Ubuntu es una distribución Linux mantenida por la empresa Canonical. Está orientada a usuarios de escritorio y sus puntos fuertes son su facilidad de uso y de instalación. Aunque el escritorio es algo distinto al de Windows o Mac OS X familiarizarse con él para un usuario acostumbrado a cualquiera de los otros sistemas operativos no debería presentar muchos problemas.
 </code>
 <hr>
+<h3>Introducción a Windows</h3>
 # Windows
 Windows Server es la familia de sistemas operativos servidores de la empresa Microsoft Corporation cuya primera versión fue lanzada en 1993 con el nombre Windows NT 3.1, la versión actual es Windows Server 2019. <br>
 Esta desarrollado en C, C++ y asembler y es un sistema operativo multiproceso y multiusuario. <br>
