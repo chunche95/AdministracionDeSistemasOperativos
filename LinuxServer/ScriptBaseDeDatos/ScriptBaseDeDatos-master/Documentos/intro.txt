@@ -1,1 +1,0 @@
-Consultas realizadas para la realización de los ejercicios de bases de datos en Oracle, MySQL y MariaDB.
